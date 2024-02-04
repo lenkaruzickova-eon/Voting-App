@@ -1,0 +1,96 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #2a324b;
+  text-align: center;
+}
+
+/* styles for components */
+
+
+
+.questions {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.user-avatar {
+  width: 150px;
+  height: 150px;
+  margin-right: 20px;
+}
+
+.pool {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* styles for inputs */
+.input label {
+  margin-bottom: 4px;
+}
+
+input {
+  height: 40px;
+  border-radius: 8px;
+
+  border: 1px solid #c7ccdb;
+  padding: 8px 16px;
+  vertical-align: top;
+  appearance: none;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+input:focus-visible,
+select:focus-visible {
+  border: 2px solid #2a324b;
+  outline: none;
+}
+input {
+  margin-bottom: 16px;
+}
+
+.button {
+  background-color: #c7ccdb;
+  cursor: pointer;
+  padding: 10px 16px;
+  width: 120px;
+  border: none;
+  border-radius: 8px;
+  margin: auto;
+}
+.button:hover {
+  background-color: #2a324b;
+  color: white;
+}
+
+.button:disabled {
+  background: #e1e5ee;
+  color: #2a324b;
+  cursor: auto;
+}
+
+/* .button:disabled:hover {
+  background-color: #e1e5ee;
+  color: black;
+} */
