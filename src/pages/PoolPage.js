@@ -25,7 +25,6 @@ const PoolPage = ({
   optionTwoVotes,
   users,
   questionsAnswered,
-  questionCreatedByUser,
 }) => {
   if (!author || !question) {
     return <NotFoundPage />;
@@ -40,8 +39,7 @@ const PoolPage = ({
         className="pool-author-avatar"
       />
       <h2>Would you rather</h2>
-      {questionCreatedByUser.includes(question.id) ||
-      questionsAnswered.includes(question.id) ? (
+      {questionsAnswered.includes(question.id) ? (
         <AsweredPool
           dispatch={dispatch}
           optionOne={optionOne}
@@ -146,7 +144,6 @@ const mapStateToProps = ({ questions, users, authedUser }, props) => {
     optionTwoVotes: questions[id].optionTwo.votes,
     users: Object.values(users),
     questionsAnswered: Object.keys(user.answers),
-    questionCreatedByUser: user.questions,
   };
 };
 

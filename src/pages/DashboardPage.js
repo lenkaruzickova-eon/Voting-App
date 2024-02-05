@@ -2,22 +2,14 @@ import { connect } from "react-redux";
 import Question from "../components/Question";
 import "./DashboardPage.css";
 
-const DashboardPage = ({
-  questions,
-  questionsAnswered,
-  questionCreatedByUser,
-}) => {
+const DashboardPage = ({ questions, questionsAnswered }) => {
   return (
     <div className="dashboard-page">
       <h1>Dashboard</h1>
       <h2>New questions</h2>
       <ul className="question-list ">
         {questions
-          .filter(
-            (id) =>
-              !questionCreatedByUser.includes(id) &&
-              !questionsAnswered.includes(id)
-          )
+          .filter((id) => !questionsAnswered.includes(id))
           .map((id) => (
             <li key={id}>
               <Question id={id} />
@@ -28,21 +20,12 @@ const DashboardPage = ({
       <h2>Answered questions</h2>
       <ul className="question-list ">
         {questions
-          .filter((id) => !questionCreatedByUser.includes(id))
+          .filter((id) => questionsAnswered.includes(id))
           .map((id) => (
             <li key={id}>
               <Question id={id} />
             </li>
           ))}
-      </ul>
-
-      <h2>Created questions</h2>
-      <ul className="question-list ">
-        {questionCreatedByUser.map((id) => (
-          <li key={id}>
-            <Question id={id} />
-          </li>
-        ))}
       </ul>
     </div>
   );
@@ -60,9 +43,7 @@ const mapStateToProps = ({ questions, users, authedUser }) => {
 
   return {
     questions: Object.keys(questions),
-    // to be used in case that in block of Answered questions shall be shown also questions created and answered by user
     questionsAnswered: Object.keys(user.answers),
-    questionCreatedByUser: user.questions,
   };
 };
 
