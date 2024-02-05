@@ -33,6 +33,7 @@
   border: 1px solid #2a324b;
   border-radius: 8px;
   padding: 24px;
+  width: 50%;
 }
 
 .voted {
@@ -68,10 +69,12 @@
     .pool-options {
       display: flex;
       flex-direction: column;
+      width: 100%;
     }
 
     .pool-option {
       margin-bottom: 24px;
+      width: unset;
     }
   }
 }
