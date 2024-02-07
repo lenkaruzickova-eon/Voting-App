@@ -20,6 +20,14 @@ const Question = (props) => {
       >
         Show
       </Link>
+
+      <Link
+        to={`/question/ASasaSAS`}
+        className="button"
+        data-testid="question-button"
+      >
+        Show
+      </Link>
     </div>
   );
 };

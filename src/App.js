@@ -53,12 +53,17 @@ const App = (props) => {
             </LogInProtection>
           }
         />
-        <Route path="/*" element={<ErrorPage />} />
+        <Route
+          path="/*"
+          element={
+            <LogInProtection>
+              <ErrorPage />
+            </LogInProtection>
+          }
+        />
       </Routes>
     </Fragment>
   );
-
-  //  return <div>{props.loading === true ? null : <DashboardPage />}</div>;
 };
 const mapStateToProps = ({ users }) => ({
   loading: users === null,

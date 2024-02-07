@@ -6,8 +6,9 @@ import "./LoginPage.css";
 import logo from "../../src/assets/loginPage-logo.png";
 import TextInput from "../components/TextInput";
 import React from "react";
+import { handleSetReturnUrl } from "../actions/returnUrl";
 
-const LoginPage = ({ users, dispatch }) => {
+const LoginPage = ({ users, dispatch, returnUrl }) => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [invalidLogin, setInvalidLogin] = useState(false);
@@ -34,7 +35,8 @@ const LoginPage = ({ users, dispatch }) => {
     } else {
       setInvalidLogin(false);
       dispatch(handleAuthedUser(foundUser));
-      navigate("/");
+      dispatch(handleSetReturnUrl(""));
+      navigate(returnUrl ? returnUrl : "/");
     }
   };
 
@@ -80,9 +82,10 @@ const LoginPage = ({ users, dispatch }) => {
   );
 };
 
-const mapStateToProps = ({ users }) => {
+const mapStateToProps = ({ users, returnUrl }) => {
   return {
     users: Object.values(users),
+    returnUrl,
   };
 };
 
