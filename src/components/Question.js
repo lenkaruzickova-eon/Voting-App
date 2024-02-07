@@ -1,6 +1,5 @@
 import { connect } from "react-redux";
 import { formatDate } from "../utils/helpers.js";
-import { formatQuestion } from "../utils/_DATA.js";
 import { Link } from "react-router-dom";
 import "./Questions.css";
 
@@ -33,7 +32,7 @@ const mapStateToProps = ({ authedUser, users, questions }, { id }) => {
   return {
     authedUser,
     id,
-    question: formatQuestion(question, users[question.author], authedUser),
+    question,
   };
 };
 export default connect(mapStateToProps)(Question);
