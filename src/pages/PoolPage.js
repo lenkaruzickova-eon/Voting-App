@@ -134,14 +134,19 @@ const AsweredPool = ({
 const mapStateToProps = ({ questions, users, authedUser }, props) => {
   const { id } = props.router.params;
   const user = users[authedUser.userName];
+  const q = questions[id];
+
+  if (!q) {
+    return {};
+  }
 
   return {
-    question: questions[id],
-    author: users[questions[id]?.author],
-    optionOne: questions[id].optionOne.text,
-    optionTwo: questions[id].optionTwo.text,
-    optionOneVotes: questions[id].optionOne.votes,
-    optionTwoVotes: questions[id].optionTwo.votes,
+    question: q,
+    author: users[q.author],
+    optionOne: q.optionOne.text,
+    optionTwo: q.optionTwo.text,
+    optionOneVotes: q.optionOne.votes,
+    optionTwoVotes: q.optionTwo.votes,
     users: Object.values(users),
     questionsAnswered: Object.keys(user.answers),
   };
