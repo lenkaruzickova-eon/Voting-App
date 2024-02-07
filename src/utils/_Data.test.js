@@ -1,4 +1,4 @@
-import { _saveQuestion } from "./_DATA";
+import { _saveQuestion, _saveQuestionAnswer } from "./_DATA";
 
 describe("_saveQuestion function", () => {
   it("fails when textOne is missing", async () => {
@@ -26,7 +26,7 @@ describe("_saveQuestion function", () => {
 describe("_saveQuestionAnswer function", () => {
   it("fails when answer is missing", async () => {
     async function saveAnswer() {
-      await _saveQuestion({
+      await _saveQuestionAnswer({
         qid: "8xf0y6ziyjabvozdd253nd",
         authedUser: "sarahedo",
       });
@@ -36,7 +36,7 @@ describe("_saveQuestionAnswer function", () => {
 
   it("passes when all attributes are given", async () => {
     async function saveAnswer() {
-      await _saveQuestion({
+      await _saveQuestionAnswer({
         qid: "8xf0y6ziyjabvozdd253nd",
         authedUser: "sarahedo",
         answer: "xxxx",
