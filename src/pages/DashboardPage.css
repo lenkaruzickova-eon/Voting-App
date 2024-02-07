@@ -8,8 +8,15 @@
     grid-template-rows: auto;
     grid-template-columns: 1fr 1fr 1fr;
     list-style-type: none;
-    gap: 16px;
+    gap: 8px;
     padding: 0;
+  }
+
+  .dashboard-page-switch {
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
@@ -28,7 +35,9 @@
 @media (max-width: 575.98px) {
   .dashboard-page {
     width: 100%;
-
+    .dashboard-page-switch {
+      flex-direction: column;
+    }
     .question-list {
       grid-template-rows: auto;
       grid-template-columns: 1fr;
