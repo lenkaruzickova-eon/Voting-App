@@ -1,32 +1,59 @@
 import { connect } from "react-redux";
 import Question from "../components/Question";
 import "./DashboardPage.css";
+import React, { useState } from "react";
 
-const DashboardPage = ({ questions, questionsAnswered }) => {
+const DashboardPage = ({ questionsNew, questionsAnswered }) => {
+  const [tabIndex, setTabIndex] = useState(0);
+
   return (
     <div className="dashboard-page">
       <h1>Dashboard</h1>
-      <h2>New questions</h2>
-      <ul className="question-list ">
-        {questions
-          .filter((id) => !questionsAnswered.includes(id))
-          .map((id) => (
-            <li key={id}>
-              <Question id={id} />
-            </li>
-          ))}
-      </ul>
 
-      <h2>Answered questions</h2>
-      <ul className="question-list ">
-        {questions
-          .filter((id) => questionsAnswered.includes(id))
-          .map((id) => (
-            <li key={id}>
-              <Question id={id} />
-            </li>
-          ))}
-      </ul>
+      <div className="dashboard-page-switch">
+        <button
+          type="button"
+          className="button"
+          disabled={tabIndex == 0}
+          onClick={() => setTabIndex(0)}
+        >
+          New questions
+        </button>
+        <button
+          type="button"
+          className="button"
+          disabled={tabIndex == 1}
+          onClick={() => setTabIndex(1)}
+        >
+          Answered questions
+        </button>
+      </div>
+
+      {tabIndex === 0 && (
+        <>
+          <h2>New questions</h2>
+          <ul className="question-list ">
+            {questionsNew.map((id) => (
+              <li key={id}>
+                <Question id={id} />
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+
+      {tabIndex === 1 && (
+        <>
+          <h2>Answered questions</h2>
+          <ul className="question-list ">
+            {questionsAnswered.map((id) => (
+              <li key={id}>
+                <Question id={id} />
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
     </div>
   );
 };
@@ -40,10 +67,18 @@ const mapStateToProps = ({ questions, users, authedUser }) => {
     };
   }
   const user = users[authedUser.userName];
+  const questionList = Object.values(questions)
+    .sort((a, b) => b.timestamp - a.timestamp)
+    .map((a) => a.id);
+  const answeredQuesitonIds = Object.keys(user.answers);
 
   return {
-    questions: Object.keys(questions),
-    questionsAnswered: Object.keys(user.answers),
+    questionsNew: questionList.filter(
+      (id) => !answeredQuesitonIds.includes(id)
+    ),
+    questionsAnswered: questionList.filter((id) =>
+      answeredQuesitonIds.includes(id)
+    ),
   };
 };
 
